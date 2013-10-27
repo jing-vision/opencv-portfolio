@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="template"
-	ProjectGUID="{A93A83AF-2CAB-4FAA-80F0-02B53AC28140}"
-	RootNamespace="template"
+	Name="NghiaAR"
+	ProjectGUID="{0EC5BDCA-BBB5-45EB-AE6A-8CAA15AF1C66}"
+	RootNamespace="NghiaAR"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -41,8 +41,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(OPENCV_INCLUDE);../../_common/"
-				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
+				AdditionalIncludeDirectories="e:\__svn_pool\CubeApp\include\;f:\__svn_pool\CubeApp\include\;f:\boost_1_47_0\boost\;e:\boost_1_47_0\boost\"
+				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;_USE_MATH_DEFINES"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -61,8 +61,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				OutputFile="..\bin\$(ProjectName)_d.exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="$(OPENCV_LIB)"
+				AdditionalLibraryDirectories="E:\__svn_pool\CubeApp\lib\Win32-visualstudio\;f:\__svn_pool\CubeApp\lib\Win32-visualstudio\"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				TargetMachine="1"
@@ -116,8 +117,8 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="$(OPENCV_INCLUDE);../../_common/"
-				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
+				AdditionalIncludeDirectories="e:\__svn_pool\CubeApp\include\;f:\__svn_pool\CubeApp\include\;f:\boost_1_47_0\boost\;e:\boost_1_47_0\boost\"
+				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;_USE_MATH_DEFINES"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
@@ -135,8 +136,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				OutputFile="..\bin\$(ProjectName).exe"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="$(OPENCV_LIB)"
+				AdditionalLibraryDirectories="E:\__svn_pool\CubeApp\lib\Win32-visualstudio\;f:\__svn_pool\CubeApp\lib\Win32-visualstudio\"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				OptimizeReferences="2"
@@ -170,19 +172,115 @@
 	</References>
 	<Files>
 		<Filter
-			Name="opencv"
+			Name="NAR"
 			>
 			<File
-				RelativePath="..\..\_common\OpenCV\OpenCV.cpp"
+				RelativePath=".\AlphaBetaTracker.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\_common\OpenCV\OpenCV.h"
+				RelativePath=".\AlphaBetaTracker.h"
+				>
+			</File>
+			<File
+				RelativePath=".\BaseThread.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\BaseThread.h"
+				>
+			</File>
+			<File
+				RelativePath=".\CpuID.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\CpuID.h"
+				>
+			</File>
+			<File
+				RelativePath=".\DoG.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\DoG.h"
+				>
+			</File>
+			<File
+				RelativePath=".\KTree.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\KTree.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NAR.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\NAR.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NAR_Config.h"
+				>
+			</File>
+			<File
+				RelativePath=".\NAR_Sig.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\NAR_Sig.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Rpoly.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Rpoly.h"
+				>
+			</File>
+			<File
+				RelativePath=".\RPP.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\RPP.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ThreadJob.h"
 				>
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\src\main.cpp"
+			RelativePath=".\ExtractFeatureThread.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\ExtractFeatureThread.h"
+			>
+		</File>
+		<File
+			RelativePath=".\KeyPointThread.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\KeyPointThread.h"
+			>
+		</File>
+		<File
+			RelativePath=".\main.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\VideoThread.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\VideoThread.h"
 			>
 		</File>
 	</Files>

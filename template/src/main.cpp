@@ -1,4 +1,4 @@
-#include "vOpenCV/OpenCV.h"
+#include "OpenCV/OpenCV.h"
 
 VideoInput input;
 
