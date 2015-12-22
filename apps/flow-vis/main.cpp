@@ -55,17 +55,30 @@ Mat readOpticalFlow( const String& path )
 
 int main()
 {
-    Mat_<Point2f> flow = readOpticalFlow("../media/frame_0001.flo");
-    Mat_<Vec3b> canvas(flow.rows, flow.cols);
-    int step = 16;
-    for (int i = 0; i < flow.rows; i += step){
-        for (int j = 0; j < flow.cols; j += step){
-            const Point2f& u = flow(i, j);
-            cv::line(canvas, { j, i }, { int(j + u.x), int(i + u.y) }, CV_RGB(255, 0, 0));
+    //Mat_<Point2f> flow = readOpticalFlow("../media/frame_0001.flo");
+    int idx = 1;
+    char file[256];
+    while (true)
+    {
+        sprintf(file, "c:/p4hw/vincentz-hw-pc1/hw/tools/trace_tools/OpticalFlowGen/flow/dummy0/frame_%04d.flo", idx);
+        Mat_<Point2f> flow = readOpticalFlow(file);
+        if (flow.empty())
+        {
+            break;
         }
+        printf("%s\n", file);
+        Mat_<Vec3b> canvas(flow.rows, flow.cols);
+        int step = 8;
+        for (int i = 0; i < flow.rows; i += step){
+            for (int j = 0; j < flow.cols; j += step){
+                const Point2f& u = flow(i, j);
+                cv::circle(canvas, { j, i }, 1, CV_RGB(0, 0, 255));
+                cv::line(canvas, { j, i }, { int(j + u.x * 10), int(i + u.y * 10) }, CV_RGB(255, 0, 0));
+            }
+        }
+        imshow("flow", canvas);
+        if (waitKey() == 27) break;
+        idx++;
     }
-    imshow("flow", canvas);
-    waitKey();
-
     return 0;
 }
