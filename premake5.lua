@@ -1,4 +1,3 @@
--- http://industriousone.com/scripting-reference
 -- https://github.com/premake/premake-core/wiki
 
 local action = _ACTION or ""
@@ -88,7 +87,7 @@ solution "opencv-portfolio"
             includedirs {
                 "include",
                 "../opencv-lib/include",
-                "apps/" .. leaf_name .. "/include",
+                "apps/" .. leaf_name .. "/include/**",
             }
 
             if CUDA_PATH ~= nil then
