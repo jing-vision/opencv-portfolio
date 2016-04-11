@@ -67,18 +67,23 @@ int main()
             break;
         }
         printf("%s\n", file);
-        Mat_<Vec3b> canvas(flow.rows, flow.cols);
-        int step = 8;
+
+        sprintf(file, "c:/p4hw/vincentz-hw-pc1/hw/tools/trace_tools/OpticalFlowGen/images/dummy0/frame_%04d.jpg", idx);
+        Mat canvas = imread(file);
+
+        //Mat_<Vec3b> canvas(flow.rows, flow.cols);
+        int step = 10;
         for (int i = 0; i < flow.rows; i += step){
             for (int j = 0; j < flow.cols; j += step){
                 const Point2f& u = flow(i, j);
                 cv::circle(canvas, { j, i }, 1, CV_RGB(0, 0, 255));
-                cv::line(canvas, { j, i }, { int(j + u.x * 10), int(i + u.y * 10) }, CV_RGB(255, 0, 0));
+                cv::line(canvas, { j, i }, { int(j + u.x * 1), int(i + u.y * 1) }, CV_RGB(255, 0, 0));
             }
         }
         imshow("flow", canvas);
-        if (waitKey() == 27) break;
+        if (waitKey(300) == 27) break;
         idx++;
+        if (idx == 100) idx = 1;
     }
     return 0;
 }
