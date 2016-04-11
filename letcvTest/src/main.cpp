@@ -1,6 +1,5 @@
 #include "opencv2/opencv.hpp"
-#include <iostream>
-#include <fstream>
+#include "c:/Users/vincentz/Documents/InfiniTAM/letcv/Include/letcv_stereo.h"
 
 #define OPENCV_VERSION CVAUX_STR(CV_MAJOR_VERSION)""CVAUX_STR(CV_MINOR_VERSION)""CVAUX_STR(CV_SUBMINOR_VERSION)
 
@@ -14,122 +13,58 @@
 #pragma comment(lib,"opencv_highgui"OPENCV_VERSION".lib")
 #endif	//_DEBUG
 
-char* filenames[] =
-{
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_480_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_483_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_486_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_489_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_492_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_495_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_498_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_501_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_504_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_507_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_510_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_513_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_516_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_519_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_522_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_531_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_534_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_537_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_540_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_552_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_555_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_558_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_561_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_567_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_570_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_573_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_576_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_579_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_582_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_585_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_588_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_612_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_615_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_618_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_621_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_624_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_627_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_630_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_633_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_636_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_639_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_642_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_645_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_648_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_651_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_654_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_657_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_660_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_663_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_666_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_669_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_672_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_675_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_678_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_681_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_690_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_693_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_696_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_702_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_705_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_708_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_711_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_717_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_720_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_723_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_726_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_729_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_732_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_735_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_738_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_741_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_744_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_747_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_750_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_753_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_756_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_759_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_762_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_765_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_768_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_771_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_774_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_777_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_780_16u_disp.bin",
-    "c:/Users/vincentz/Documents/InfiniTAM/media/box/depth_783_16u_disp.bin",
-};
-
 using namespace cv;
 
-void LoadData(const char *filename, Mat &image)
+void frameArriveCallback(letcv::ILetcvStereoCam *cam, void * userParam)
 {
-    const int tsize = sizeof(unsigned short);
-    std::ifstream ifs(filename, std::ios::binary);
-    unsigned short w, h;
-    ifs.read((char*)&w, tsize);
-    ifs.read((char*)&h, tsize);
-    image.create(h, w, CV_16SC1);
-    ifs.read((char*)image.data, h * w * tsize);
-    ifs.close();
+    printf("haha\n");
 }
 
-int main(int argc, char** argv )
+int main(int argc, char** argv)
 {
-    for (auto filename : filenames)
-    {
-        Mat frame;
-        LoadData(filename, frame);
-        namedWindow("test");
-        imshow("test", frame);
-        if (waitKey(-1) == 27)
-        {
-            break;
-        }
+    const char *kDepthWinName = "depth";
+    const char *kIRWinName = "ir";
+    const char *kConfigName = "app_config.txt";
+    auto cam = letcv::CreateUsbCamera();
+    auto ret = cam->Init(kConfigName);
+    if (letcv::SCAM_SUCCESS != ret) {
+        printf("got error code :%d\n", ret);
+        letcv::ReleaseUsbCamera(&cam);
+        return -1;
     }
-	
+    char k = 0;
+    letcv::ImageBuffer buff_depth, buff_ir;
+    std::vector<letcv::Point3f> pnts;
+    cv::namedWindow(kIRWinName);
+    cv::namedWindow(kDepthWinName);
+
+    //cam->SetCallback(frameArriveCallback, NULL);
+
+    while (k != 'q') {
+        auto ret1 = cam->GetFrame(letcv::IMG_DEPTH, &buff_depth);
+        auto ret2 = cam->GetFrame(letcv::IMG_LEFT_IR, &buff_ir);
+        if (letcv::SCAM_SUCCESS == ret1 && letcv::SCAM_SUCCESS == ret2) {
+            cv::Mat img(buff_depth.height, buff_depth.width, CV_16UC1, buff_depth.data);
+            cv::Mat ir(buff_ir.height, buff_ir.width, CV_8UC1, buff_ir.data);
+            double minDepth, maxDepth;
+            cv::minMaxIdx(img, &minDepth, &maxDepth);
+            printf("[%1.f, %.1f] ", minDepth, maxDepth);
+            unsigned short vmin, vmax;
+            vmin = 1000;
+            vmax = 5000;
+            img = (img - vmin) * 255 / (vmax - vmin);
+            //img = 255 - img;
+            img.convertTo(img, CV_8UC1);
+            cv::minMaxIdx(img, &minDepth, &maxDepth);
+            printf("[%1.f, %.1f]\n", minDepth, maxDepth);
+
+            cv::imshow(kDepthWinName, img);
+            cv::imshow(kIRWinName, ir);
+            cam->NextFrame();
+        }
+        k = cv::waitKey(1);
+    }//while
+    letcv::ReleaseImageBuffer(&buff_depth);
+    letcv::ReleaseUsbCamera(&cam);
     return 0;
 }

@@ -1,7 +1,9 @@
-#include "../../../_common/vOpenCV/OpenCV.h"
-#include "../../../_common/vOpenCV/BlobTracker.h"
+#include "../../_common/OpenCV/OpenCV.h"
+#include "../../_common/OpenCV/BlobTracker.h"
 #include <set>
+#include <vector>
 
+using namespace std;
 using namespace cv;
 
 enum PointState{
@@ -32,7 +34,7 @@ PointState getPointState(const Point& pt, int width, int height, int id)
 
 int main(int argc, char** argv )
 {	
-	Mat frame = cvLoadImage("../media/scene.jpg", CV_LOAD_IMAGE_GRAYSCALE);
+    Mat frame = imread("../media/scene.jpg", IMREAD_GRAYSCALE);
 	int W = frame.cols;
 	int H = frame.rows;
 
@@ -41,7 +43,7 @@ int main(int argc, char** argv )
 	vClose(frame,2);
 
 	show_mat(frame);
-	cvWaitKey();
+	waitKey();
 	vFindBlobs(frame, blobs,100);
 	frame = 0; 
 	int min_idx	= -1;
@@ -61,10 +63,11 @@ int main(int argc, char** argv )
 			{
 				NearPointSet.insert(st);
 				ptx = b.pts[j];
-				break;
 			}
 		}
 
+        if (NearPointSet.size() > 1) continue;
+            
 		bool only_one_near = NearPointSet.size() == 1;
 		int min_value = only_one_near ? 0 : INT_MAX;
 		for (int j=0;j<b.pts.size();j++)
@@ -72,11 +75,11 @@ int main(int argc, char** argv )
 			Point diff = b.pts[j] - ptx;
 			float dist = norm(diff);
 
-			if (
-				(only_one_near && dist > min_value) ||
-				(!only_one_near && dist < min_value)
-				)
-			{
+            if (
+                (only_one_near && dist > min_value) ||
+                (!only_one_near && dist < min_value)
+                )
+            {
 				min_value = dist;
 				min_idx = j;
 			}
