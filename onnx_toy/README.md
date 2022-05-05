@@ -1,7 +1,9 @@
 # 模型
 
 官方下载地址：
-https://digital-standard.com/threedpose/models/Resnet34_3inputs_448x448_20200609.onnx
+- https://digital-standard.com/threedpose/models/Resnet34_3inputs_448x448_20200609.onnx
+- https://digital-standard.com/threedpose/models/HighQualityTrainedModel.nn
+- 
 
 # 工具
 
