@@ -14,3 +14,4 @@ https://github.com/lutzroeder/netron
 - pip install onnxruntime-gpu
 - CUDA SDK 11.4
 - TensorRT SDK 8.2
+- CUDNN 8.2.2

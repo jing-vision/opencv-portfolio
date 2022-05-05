@@ -10,7 +10,8 @@ vid = cv2.VideoCapture(0)
 print(rt.get_device()  )
 
 model_name = 'data/Resnet34_3inputs_448x448_20200609.onnx'
-sess = rt.InferenceSession(model_name, providers=['TensorrtExecutionProvider', 'CUDAExecutionProvider'])
+sess = rt.InferenceSession(model_name, providers=['CUDAExecutionProvider'])
+# sess = rt.InferenceSession(model_name, providers=['TensorrtExecutionProvider', 'CUDAExecutionProvider'])
 inputs = sess.get_inputs()
 print(inputs)
 
@@ -53,7 +54,7 @@ while(True):
         kps[j,0] = pos_x
         kps[j,1] = pos_y
         kps[j,2] = pos_z
-        print("%f,%f,%f;" %(pos_x,pos_y,pos_z))    
+        print("%2d,%f,%f,%f" %(j, pos_x,pos_y,pos_z))    
 
     # the 'q' button is set as the
     # quitting button you may use any
