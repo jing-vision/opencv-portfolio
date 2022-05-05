@@ -14,6 +14,7 @@ https://github.com/lutzroeder/netron
 
 - pip install opencv-python
 - pip install onnxruntime-gpu
+- pip install python-osc
 - CUDA SDK 11.4
 - TensorRT SDK 8.2
 - CUDNN 8.2.2
